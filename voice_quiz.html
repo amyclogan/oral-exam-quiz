@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"><title>Oral Exam Voice Quiz</title><style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Oral Exam Quiz"><title>Oral Exam Voice Quiz</title><style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #1a1a2e; color: #eee; min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 16px; }
 h1 { font-size: 1.3rem; color: #a78bfa; margin-bottom: 4px; text-align: center; }
@@ -122,4 +122,8 @@ function listenNext(){setMic('L','Say next to continue or repeat to rehear');lis
 function nextCard(){stopAll();idx++;if(idx<cards.length)showCard();else endQuiz();}
 function togglePause(){paused=!paused;const b=document.getElementById('bp');if(paused){stopAll();b.textContent='Resume';setMic('','Paused');}else{b.textContent='Pause / Resume';if(ansShown)listenNext();else readQuestion();}}
 function endQuiz(){stopAll();document.getElementById('ce').innerHTML='<div class="clabel">COMPLETE</div><div class="ctext" style="font-size:1.2rem;text-align:center;padding-top:16px;">All '+cards.length+' cards done!<br><br>You have got this, Amy.</div>';setMic('','Done!');document.getElementById('ba').disabled=true;document.getElementById('bs').disabled=true;}
+</script><script>
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+}
 </script></body></html>
